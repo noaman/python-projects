@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/python-projects/
+permissions:    
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    mode: 777
+    type:
+      - file
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    mode: 777
+    type:
+      - directory
