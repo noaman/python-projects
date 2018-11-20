@@ -18,17 +18,20 @@
 #if __name__ == "__main__":
 #   app.run(debug= True)
 
+#When installing on EC2 aws for pip3 install use the below command
+#sudo -H pip3 install <name of library>
 
 
-from flask import (Flask,render_template, redirect,url_for, request, make_response)
-from flask_wtf import Form
-
-from wtforms import  TextField,BooleanField,PasswordField, TextAreaField, validators, StringField, SubmitField
+from flask import (Flask)
 
 
 
 
+#this is for localhost
 from .routes import *
+
+#this is for server on ec2
+#from routes import *
 
 app = Flask(__name__)
 app.secret_key = 'jhshs%545343543HHH**£223££##€€'

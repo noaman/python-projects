@@ -15,12 +15,14 @@ class YouTubeDownloaderCode():
 	def checkYouTubeURL(self,url_str):
 		try:
 			yt = pytube.YouTube(url_str)
+			print("YT = ",yt)
 			video_streams = yt.streams.filter(file_extension='mp4').all()
 			vids=[]
+
 			for vid in video_streams:
 				video_details=[round(vid.filesize/(1024*1024)),vid.url,vid.resolution]
 				vids.append(video_details)
-
+				print("in here")
 			res = ['success',yt.title,yt.thumbnail_url,vids]
 		except:	
 			res = ["Please enter a valid YouTube URL"]
