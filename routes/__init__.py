@@ -4,6 +4,7 @@ routes = Blueprint('routes', __name__)
 from .index import *
 from .yt_downloader import *
 from .tw_analyzer import *
+from .url_shortener import *
 
 
 

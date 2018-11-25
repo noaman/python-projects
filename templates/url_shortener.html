@@ -1,0 +1,29 @@
+
+<html>
+    <head>
+        <title>URL Shortener</title>
+    </head>
+    <body>
+
+    
+
+
+	
+        <form action="/u/" method="post">
+        	{{ form.hidden_tag() }}
+
+        	{{ form.url.label }}<br>
+               {{ form.url }}<br/>
+               {% if result != None %}
+					{% if result|length ==1 %}
+						Please enter a valid url<br/>
+					{% endif %}			
+				{% endif %}		
+
+
+            <input type="submit"/>
+        </form>
+
+        	
+    </body>
+</html>
