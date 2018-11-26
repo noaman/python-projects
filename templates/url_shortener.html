@@ -1,19 +1,42 @@
 
-<html>
-    <head>
-        <title>URL Shortener</title>
-    </head>
-    <body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <title>Youtube videos downloader</title>
+  </head>
+  <body>
 
+  	<div class="container">
+
+{% if form == None and path != None %}
+
+	 <div class="jumbotron" style="background: #002211;color:#FFFFFF;">
+  <h1 class="display-4">Easy URL Shortener</h1>
+  <p class="lead">This is your shortened URL</p>
+  <h3><a style="color:#FEDF0F;" href="{{path}}">{{path}}</a></h3>
+
+</div>
+
+{% else %}
+    <div class="jumbotron" style="background: #002211;color:#FFFFFF;">
+  <h1 class="display-4">Easy URL Shortener</h1>
+  <p class="lead">Simple program to shorten long URLs. Just add the link and shorten it to a much simpler URL</p>
+  
+
+  		<div class="row">
 	
+		<div class="col-12">
         <form action="/u/" method="post">
         	{{ form.hidden_tag() }}
 
-        	{{ form.url.label }}<br>
-               {{ form.url }}<br/>
+        	
                {% if result != None %}
 					{% if result|length ==1 %}
 						Please enter a valid url<br/>
@@ -21,9 +44,28 @@
 				{% endif %}		
 
 
-            <input type="submit"/>
-        </form>
+            
+            	<div class="input-group input-group-lg">
 
-        	
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">Enter the link to shorten</span>
+					</div>
+					<input type="text" class="form-control" id="url" name="url"  aria-label="Username" aria-describedby="basic-addon1">
+
+					<div class="input-group-append">
+	    				<button class="btn btn-primary" type="submit" id="button-addon2">Submit</button>
+	  				</div>
+				</div>
+
+				
+        </form>
+        </div>
+
+    </div>
+        </div>
+
+        </div>	
+
+  {% endif %}      
     </body>
 </html>

@@ -5,6 +5,7 @@ from .index import *
 from .yt_downloader import *
 from .tw_analyzer import *
 from .url_shortener import *
+from .tw_hashtags import *
 
 
 

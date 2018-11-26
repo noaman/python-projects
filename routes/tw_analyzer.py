@@ -20,6 +20,13 @@ class TwitterAnalyzer():
 		Twitter['Consumer Secret'] = '<YOUR CONSUMER SECRET>'
 		Twitter['Access Token'] = '<YOUR ACCESS TOKEN>'
 		Twitter['Access Token Secret'] = '<YOUR ACCESS TOKEN SECRET>'
+
+		#local machine file path
+		#filepath = "python-projects/passwords/twitter_creds.passwords"
+		
+		#server file path
+		filepath = "/var/www/python-projects/passwords/twitter_creds.passwords"
+
 		with open("python-projects/passwords/twitter_creds.passwords", "r") as file:
 			Twitter['Consumer Key'] = file.readline().strip()
 			Twitter['Consumer Secret'] = file.readline().strip()

@@ -1,12 +1,15 @@
 from flask import render_template, request, flash
 from . import routes
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import TextField
 from wtforms import validators, ValidationError
 import pytube
 import re
+import time
+from datetime import datetime, date, time, timedelta
 
-class YouTubeDownloaderForm(Form):
+
+class YouTubeDownloaderForm(FlaskForm):
    url = TextField("Enter the video URL",[validators.Required("Please enter a URL")])
 
 
@@ -15,18 +18,19 @@ class YouTubeDownloaderCode():
 	def checkYouTubeURL(self,url_str):
 		try:
 			yt = pytube.YouTube(url_str)
-			print("YT = ",yt)
 			video_streams = yt.streams.filter(file_extension='mp4').all()
 			vids=[]
 
 			for vid in video_streams:
 				video_details=[round(vid.filesize/(1024*1024)),vid.url,vid.resolution]
 				vids.append(video_details)
-				print("in here")
-			res = ['success',yt.title,yt.thumbnail_url,vids]
+				
+			res = ['success',yt.title,yt.thumbnail_url,vids,yt.length]
 		except:	
 			res = ["Please enter a valid YouTube URL"]
 		return res
+
+	
 
 
 @routes.route('/yt',methods=['POST', 'GET'])

@@ -1,45 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<html>
-    <head>
-        <title>You Tube Downloader</title>
-    </head>
-    <body>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    
+    <title>Youtube videos downloader</title>
+  </head>
+  <body>
 
+  	<div class="container">
 
+  		<div class="jumbotron" style="background: #FF0000;color:#FFFFFF;">
+  <h1 class="display-4">Download Audio and Video from YouTube </h1>
+  <p class="lead">Simple program to download YouTube Videos. Just add the video link and choose the video option to download</p>
+  
+
+	<div class="row">    
+
+		<div class="col-lg">
 	
         <form action="/yt" method="post">
         	{{ form.hidden_tag() }}
 
-        	{{ form.url.label }}<br>
-               {{ form.url }}<br/>
-               {% if result != None %}
-					{% if result|length ==1 %}
-						Please enter a valid Youtube link<br/>
-					{% endif %}			
-				{% endif %}		
+        	
+               
+              
 
+				
+					<div class="input-group input-group-lg">
 
-            <input type="submit"/>
+				<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">Enter YouTube Video link</span>
+				</div>
+				<input type="text" class="form-control" id="url" name="url"  aria-label="Username" aria-describedby="basic-addon1">
+
+				<div class="input-group-append">
+    <button class="btn btn-dark" type="submit" id="button-addon2">Submit</button>
+  </div>
+
+	
+
+				</div>
+	
+		
         </form>
+    </div>
+    </div>
+
+     {% if result != None %}
+					{% if result|length ==1 %}
+						<div class="row" style="margin:10px;">
+							<div class="col-lg">
+								<div class="alert alert-danger" role="alert">
+  									Please enter a valid Youtube link
+								</div>
+							</div>
+						</div>	
+
+						
+					{% endif %}			
+				{% endif %}	
+</div>
+
 
         {% if result != None %}
 			{% if result|length >1 %}
+
 				{% set title = result[1] %}
 				{% set thumbnail = result[2] %}
+				{% set length = result[4] %}
+				
 				{% set vids = result[3] %}
 
-					<b>{{title}}</b>
-					<br/>
-					<img src="{{thumbnail}}"/>
-					<br/>
-					{% for vid in vids %}
-						resolution : {{vid[2]}}<br/>
-						size : {{vid[0]}} MB <br/>
-						link : <a href="{{vid[1]}}">Right click and save as</a> <hr/>
-					{% endfor %}	
+
+
+				<div class="container">
+				  <div class="row">
+				    <div class="col-4">
+						<div class="card" style="width: 18rem;">
+						<img class="card-img-top" src="{{thumbnail}}" alt="Card image cap">
+						<div class="card-body">
+						<p class="card-text">{{title}}</p>
+						</div>
+						</div>
+				    </div>
+				    <div class="col-8">
+				      <table class="table table-striped">
+					  <thead>
+					    <tr>
+					      
+					      <th scope="col">Resolution</th>
+					      <th scope="col">Size</th>
+					      <th scope="col">Action</th>
+					    </tr>
+					  </thead>
+					  <tbody>	
+					  	{% for vid in vids %}
+					  	<tr><td>{{vid[2]}}</td><td>{{vid[0]}} MB</td>
+					  		<td>
+					  			<a href="{{vid[1]}}"><button type="button" class="btn btn-primary">Right click - save as</button></a>
+					  		</td></tr>
+					  	{% endfor %}
+					  </tbody>
+					  </table>	
+				    </div>
+				    
+				  </div>
+				</div>
+
+
 			{% endif %}			
-		{% endif %}		
+		{% endif %}	
+		</div>	
     </body>
 </html>
