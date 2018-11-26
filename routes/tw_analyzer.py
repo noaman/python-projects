@@ -16,10 +16,10 @@ class TwitterTrendsAnalyzerForm(FlaskForm):
 class TwitterAnalyzer():
 	def getTweets(self,woeid):
 		Twitter={}
-		Twitter['Consumer Key'] = 'eLmS48vNRMa0AJt0ZoHTPEt8K'
-		Twitter['Consumer Secret'] = 'gJrUh2oe7pMdPlBNJgo5FBZbNzIXQFxbsPAHDsWnmqJK7qbjwp'
-		Twitter['Access Token'] = '2376849285-1rc5bBxVZLlL3xXHjoTKi3nu4Ak9Mv3tkajedty'
-		Twitter['Access Token Secret'] = 'Av75jUVxB930Coxzoj62qwp9UXAWBvOwiyhUxjXQ3aSvA'
+		Twitter['Consumer Key'] = '<YOUR CONSUMER KEY>'
+		Twitter['Consumer Secret'] = '<YOUR CONSUMER SECRET>'
+		Twitter['Access Token'] = '<YOUR ACCESS TOKEN>'
+		Twitter['Access Token Secret'] = '<YOUR ACCESS TOKEN SECRET>'
 		auth = twitter.oauth.OAuth(Twitter['Access Token'],Twitter['Access Token Secret'],Twitter['Consumer Key'],Twitter['Consumer Secret'])
 		twitter_api = twitter.Twitter(auth=auth)
 		WORLD_WOE_ID =woeid
@@ -40,10 +40,10 @@ class TwitterAnalyzer():
 
 @routes.route('/tw',methods=['POST', 'GET'])
 def tw_index():
-	
 	form = TwitterTrendsAnalyzerForm()	
-	trends_woeid = 1;
-	cityset=None;
+	trends_woeid = 1
+	country_woeid=1
+	cityset=None
 	if request.method == 'POST':
 		trends_woeid=request.form["country"]
 		country_woeid=request.form["country"]

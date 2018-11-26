@@ -17,7 +17,11 @@ def string_num_generator(size):
 
 def createShortURl(link):
 	short_url=string_num_generator(6)
-	with open("python-projects/shortlinks/"+short_url, "w") as test:
+	#for server side
+	folderpath="/var/www/python-projects/shortlinks/"
+	#for dev side local machine
+	#folderpath="python-projects/shortlinks/"
+	with open(folderpath+short_url, "w") as test:
 		test.write(link)
 		return short_url
 
@@ -39,7 +43,11 @@ def url_index():
 
 @routes.route('/u/<path:path>')
 def url_index1(path):
-	filepath ="python-projects/shortlinks/"+path
+	#for server side
+	folderpath="/var/www/python-projects/shortlinks/"
+	#for dev side local machine
+	#folderpath="python-projects/shortlinks/"
+	filepath =folderpath+path
 	if(os.path.isfile(filepath)):
 		return redirect(getLongURL(filepath))
 	else:

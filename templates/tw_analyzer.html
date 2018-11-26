@@ -1,4 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+  	<div class="container">
 {%
 
 set country_db = [
@@ -495,7 +509,12 @@ set citydb = [
 
 {% set ns = namespace(country_sel="World Wide",city_array=cities_array,city_sel=citysel,cityname=city_name) %}
 
-<h4>Select Country </h4>
+
+<div class="jumbotron">
+	<h1 class="display-4">Twitter trends</h1>
+  <p class="lead">This is a simple program to find whats trending on Twitter in each contry</p>
+
+<div class="alert alert-primary" role="alert">Select a country for which you want to find the Twitter trends for </div>
 <form action="/tw" method="post">
 {{ form.hidden_tag() }}
 	<select name="country">
@@ -512,13 +531,15 @@ set citydb = [
 	</select>	
 		
 
- <input type="submit"/>
+ <input type="submit" class="btn btn-dark"/>
 </form>
 <hr/>
 {% if woeid_set !=1 %}
 
 <form action="/tw" method="post">
-<h4>Select City </h4>
+
+<div class="alert alert-primary" role="alert">Select a city for which you want to find the Twitter trends for </div>
+
 {{ form.hidden_tag() }}
 <input type="hidden" name="country" value="{{woeid_sel}}"/>
 <select name="city">
@@ -541,12 +562,13 @@ set citydb = [
 		
 	</select>	
 
-<input type="submit"/>
+<input type="submit" class="btn btn-dark"/>
 </form>
-<hr/>
+</div>
+
 {% endif %}
 
-{% if ns.city_set != None %}
+{% if ns.cityname != None %}
 <h1> Trends for <span style="color:#FF0000">{{ns.country_sel}} - {{ns.cityname}}</span></h1>
 
 {% else %}
@@ -554,7 +576,10 @@ set citydb = [
 {% endif %}
 
 {% if trends != None %}
-<table>
+<div class="row">
+	<div class="col-sm">
+<table class="table table-striped">
+
 	<tr><th>Name</th><th>Volume</th></tr>
 	{% for trend in trends%}
 		
@@ -562,4 +587,13 @@ set citydb = [
 	
 	{% endfor %}
 </table>
+	</div>
+	<div class="col-sm">
+	</div>
+	<div class="col-sm">
+	</div>
+</div>
 {% endif %}
+</div>
+</body>
+</html>
